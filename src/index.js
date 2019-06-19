@@ -7,6 +7,7 @@ export default class Hello extends Component {
   static propTypes = {
     color: PropTypes.string,
     background: PropTypes.string,
+    round: PropTypes.bool,
     width: PropTypes.number,
     height: PropTypes.number,
     children: PropTypes.node,
@@ -14,6 +15,7 @@ export default class Hello extends Component {
 
   static defaultProps = {
     color: 'red',
+    round: false,
     background: 'transparent',
     width: 200,
     height: 40,
@@ -21,7 +23,7 @@ export default class Hello extends Component {
   }
 
   render() {
-    const { color, background, width, height, style = {}, className = '', children, ...others } = this.props;
+    const { color, background, round, width, height, style = {}, className = '', children, ...others } = this.props;
 
     return (
       <div
@@ -30,6 +32,7 @@ export default class Hello extends Component {
           background,
           width,
           height,
+          borderRadius: round ? height / 2 : 2,
           ...style,
         }}
         className={`hello ${className}`}

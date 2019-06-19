@@ -6,15 +6,14 @@ export default {
   editor: () => {
     return {
       props: [{
-        name: 'color',
+        name: 'level',
         type: 'enum',
-        options: ['red', 'blue', 'yellow', 'orange', 'white', 'black'],
-        default: 'red',
+        options: ['primary', 'secondary', 'success'],
+        default: 'primary'
       }, {
-        name: 'background',
-        type: 'enum',
-        options: ['transparent', 'red', 'blue', 'yellow', 'orange', 'white', 'black'],
-        default: 'transparent',
+        name: 'round',
+        type: 'bool',
+        default: false,
       }, {
         name: 'width',
         type: 'number',
@@ -29,10 +28,15 @@ export default {
       }
     };
   },
-  adaptor: ({ color, background, width, height, data, ...others }) => {
+  adaptor: ({ level, width, height, data, ...others }) => {
+    const background = {
+      primary: '#2196f3',
+      secondary: '#ff4081',
+      success: '#4caf50'
+    }[level];
     return (
       // eslint-disable-next-line react/react-in-jsx-scope
-      <MainComponent  {...others} color={color} background={background} width={width} height={height} children={data} />
+      <MainComponent  {...others} color="#fff" background={background} width={width} height={height} children={data} />
     );
   },
 };
